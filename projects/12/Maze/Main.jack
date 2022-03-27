@@ -1,0 +1,12 @@
+// File name: projects/09/Maze/Main.jack
+
+/** Initializes a new Square Dance game and starts running it. */
+class Main {
+    function void main() {
+        var MazeGame game;
+        let game = MazeGame.new();
+        do game.run();
+        do game.dispose();
+        return;
+    }
+}

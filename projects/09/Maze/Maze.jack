@@ -1,0 +1,94 @@
+// File name: projects/09/Maze/Maze.jack
+
+/** Implements a graphical maze. */
+class Maze {
+
+   field int x, y; // screen location of the square's top-left corner
+   field int radius; // length of this square, in pixels
+
+   /** Constructs a new square with a given location and radius. */
+   constructor Maze new(int Ax, int Ay, int Aradius) {
+      let x = Ax;
+      let y = Ay;
+      let radius = Aradius;
+      do drawMaze();
+      do draw();
+      return this;
+   }
+
+   /** Disposes this Maze. */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   method void drawMaze(){
+    do Screen.setColor(true);
+    do Screen.drawRectangle(5,5,506,250);      
+    do Screen.setColor(false);
+    do Screen.drawRectangle(35,35,476,220);
+    do Screen.drawRectangle(35,220,65,250);
+    do Screen.setColor(true);
+    do Screen.drawRectangle(66,67,444,188); 
+    do Screen.drawRectangle(66,180,94,220);    
+    do Screen.setColor(false);
+    do Screen.drawRectangle(95,125,126,190); 
+    do Screen.drawRectangle(95,112,400,143);    
+	return;
+   }
+
+   /** Draws the Maze and the ball on the screen. */
+   method void draw() {
+      do Screen.setColor(true);
+      do Screen.drawCircle(x, y, radius);
+      return;
+   }
+
+   /** Moves the ball up by 2 pixels. */
+   method void moveUp() {
+      if ((((x = 50) | (x = 460)) & (y > 51)) | ((x = 110) & (y > 128))){
+         do Screen.setColor(false);
+         do Screen.drawCircle(x, y, radius);
+         let y = y - 2;
+         do Screen.setColor(true);
+         do Screen.drawCircle(x, y, radius);
+      }
+      return;
+   }
+
+   /** Moves the ball down by 2 pixels. */
+   method void moveDown() {
+      if ((((x = 110) | (x = 460)) & (y < 205)) | ((x = 50) & (y < 235))) {
+         do Screen.setColor(false);
+         do Screen.drawCircle(x, y, radius);
+         let y = y + 2;
+         do Screen.setColor(true);
+         do Screen.drawCircle(x, y, radius);
+      }
+      return;
+   }
+
+   /** Moves the ball left by 2 pixels. */
+   method void moveLeft() {
+      if (((y = 51) & (x > 50)) | ((y = 205) & (x > 111)) | ((y = 127) & (x >110))) {
+         do Screen.setColor(false);
+         do Screen.drawCircle(x, y, radius);
+         let x = x - 2;
+         do Screen.setColor(true);
+         do Screen.drawCircle(x, y, radius);
+      }
+      return;
+   }
+
+   /** Moves the ball right by 2 pixels. */
+   method void moveRight() {
+      if ((((y = 51) | (y = 205)) & (x < 460)) | ((y = 127) & (x < 383)))  {
+         do Screen.setColor(false);
+         do Screen.drawCircle(x, y, radius);
+         let x = x + 2;
+         do Screen.setColor(true);
+         do Screen.drawCircle(x, y, radius);
+      }
+      return;
+   }
+}
